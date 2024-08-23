@@ -1,0 +1,32 @@
+Creating Themes
+
+To generate its HTML output, Pelican uses the Jinja templating engine due to its flexibility and straightforward syntax. If you want to create your own theme, feel free to take inspiration from the “simple” theme.
+
+To generate your site using a theme you have created (or downloaded manually and then modified), you can specify that theme via the -t flag:
+
+pelican content -s pelicanconf.py -t /projects/your-site/themes/your-theme
+
+If you’d rather not specify the theme on every invocation, you can define THEME in your settings to point to the location of your preferred theme.
+Structure
+
+To make your own theme, you must follow the following structure:
+
+├── static
+│   ├── css
+│   └── images
+└── templates
+    ├── archives.html         // to display archives
+    ├── article.html          // processed for each article
+    ├── author.html           // processed for each author
+    ├── authors.html          // must list all the authors
+    ├── categories.html       // must list all the categories
+    ├── category.html         // processed for each category
+    ├── index.html            // the index (list all the articles)
+    ├── page.html             // processed for each page
+    ├── period_archives.html  // to display time-period archives
+    ├── tag.html              // processed for each tag
+    └── tags.html             // must list all the tags. Can be a tag cloud.
+
+    static contains all the static assets, which will be copied to the output theme folder. The above filesystem layout includes CSS and image folders, but those are just examples. Put what you need here.
+
+    templates contains all the templates that will be used to generate the content. The template files listed above are mandatory; you can add your own templates if it helps you keep things organized while creating your theme.
