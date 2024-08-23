@@ -36,4 +36,6 @@ PAGE_ORDER_BY = 'date'
 PAGE_EXCLUDES = ['news']
 STATIC_PATHS = ['images']
 
-TEMPLATE_PAGES = {'publications.html': 'publications.html'}
+TEMPLATE_PAGES = {'publications.html': 'publications.html',
+                  'cv.html': 'cv.html',
+                  'projects.html': 'projects.html'}
