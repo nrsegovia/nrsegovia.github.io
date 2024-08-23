@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="container">
+        <a href="{{ SITEURL }}/" class="site-title">{{ SITENAME }}</a>
+        <div class="dropdown">
+          <button class="dropbtn">&#9776;</button>
+          <div class="dropdown-content">
+            <a href="{{ SITEURL }}/">Home</a>
+            <a href="{{ SITEURL }}/projects">Projects</a>
+            <a href="{{ SITEURL }}/publications">Publications</a>
+            <a href="{{ SITEURL }}/cv">CV</a>
+            <a href="https://github.com/nrsegovia" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="content-wrapper">
+    <div class="floating-nav">
+      <h2>Content</h2>
+      <ul>
+        {% block nav_content %}
+        {% endblock %}
+      </ul>
+    </div>
+    <div class="container">
+      <div class="main-content">
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

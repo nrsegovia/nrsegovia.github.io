@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Publications</h1>
+  <ul id="publications"></ul>
+
+  <script>
+    const orcidId = '0000-0002-0125-1472';
+    const apiUrl = `https://pub.orcid.org/v3.0/${orcidId}/works`;
+
+    fetch(apiUrl, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const publicationsList = document.getElementById('publications');
+        const listItems = [];
+
+        data.group.forEach(group => {
+          const work = group['work-summary'][0];
+          const externalIds = work['external-ids'] && work['external-ids']['external-id']
+            ? work['external-ids']['external-id']
+            : [];
+          const doi = externalIds.find(entry => entry['external-id-type'] === 'doi');
+
+          if (doi) {
+            const doiUrl = `https://api.crossref.org/works/${doi['external-id-value']}`;
+            fetch(doiUrl)
+              .then(response => response.json())
+              .then(data => {
+                const title = data.message.title[0];
+                const year = data.message['published-online']
+                  ? data.message['published-online']['date-parts'][0][0]
+                  : data.message['published-print']['date-parts'][0][0];
+                const authors = data.message.author.map(author => {
+                  const name = `${author.given} ${author.family}`;
+                  return name.includes('Rodríguez-Segovia')
+                    ? `<strong style="font-weight: 900;">${name}</strong>`
+                    : name;
+                }).join(', ');
+
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<em><a href="https://dx.doi.org/${doi['external-id-value']}" target="_blank">${title}</a></em> (${year}). Authors: ${authors}.`;
+                listItem.dataset.year = year;
+                listItems.push(listItem);
+
+                // Sort the list items by year in descending order
+                listItems.sort((a, b) => b.dataset.year - a.dataset.year);
+
+                // Clear the existing list and append the sorted list items
+                publicationsList.innerHTML = '';
+                listItems.forEach(item => publicationsList.appendChild(item));
+              })
+              .catch(error => {
+                console.error('Error fetching publication details:', error);
+              });
+          }
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching publications:', error);
+      });
+  </script>
+{% endblock %}

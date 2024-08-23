@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nicolas Rodriguez-Segovia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/theme/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="container">
+        <a href="/" class="site-title">Nicolas Rodriguez-Segovia</a>
+        <div class="dropdown">
+          <button class="dropbtn">&#9776;</button>
+          <div class="dropdown-content">
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/publications">Publications</a>
+            <a href="/cv">CV</a>
+            <a href="https://github.com/nrsegovia" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="content-wrapper">
+    <div class="floating-nav">
+      <h2>Content</h2>
+      <ul>
+      </ul>
+    </div>
+    <div class="container">
+      <div class="main-content">
+  <h1>Publications</h1>
+  <ul id="publications"></ul>
+
+  <script>
+    const orcidId = '0000-0002-0125-1472';
+    const apiUrl = `https://pub.orcid.org/v3.0/${orcidId}/works`;
+
+    fetch(apiUrl, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const publicationsList = document.getElementById('publications');
+        const listItems = [];
+
+        data.group.forEach(group => {
+          const work = group['work-summary'][0];
+          const externalIds = work['external-ids'] && work['external-ids']['external-id']
+            ? work['external-ids']['external-id']
+            : [];
+          const doi = externalIds.find(entry => entry['external-id-type'] === 'doi');
+
+          if (doi) {
+            const doiUrl = `https://api.crossref.org/works/${doi['external-id-value']}`;
+            fetch(doiUrl)
+              .then(response => response.json())
+              .then(data => {
+                const title = data.message.title[0];
+                const year = data.message['published-online']
+                  ? data.message['published-online']['date-parts'][0][0]
+                  : data.message['published-print']['date-parts'][0][0];
+                const authors = data.message.author.map(author => {
+                  const name = `${author.given} ${author.family}`;
+                  return name.includes('Rodríguez-Segovia')
+                    ? `<strong style="font-weight: 900;">${name}</strong>`
+                    : name;
+                }).join(', ');
+
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<em><a href="https://dx.doi.org/${doi['external-id-value']}" target="_blank">${title}</a></em> (${year}). Authors: ${authors}.`;
+                listItem.dataset.year = year;
+                listItems.push(listItem);
+
+                // Sort the list items by year in descending order
+                listItems.sort((a, b) => b.dataset.year - a.dataset.year);
+
+                // Clear the existing list and append the sorted list items
+                publicationsList.innerHTML = '';
+                listItems.forEach(item => publicationsList.appendChild(item));
+              })
+              .catch(error => {
+                console.error('Error fetching publication details:', error);
+              });
+          }
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching publications:', error);
+      });
+  </script>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
