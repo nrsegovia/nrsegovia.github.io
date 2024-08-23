@@ -34,7 +34,8 @@ SOCIAL = (
 DEFAULT_PAGINATION = False
 PAGE_ORDER_BY = 'date'
 PAGE_EXCLUDES = []
-STATIC_PATHS = ['images', 'news']
+STATIC_PATHS = ['images']
+ARTICLE_PATHS = ['news']
 
 TEMPLATE_PAGES = {'publications.html': 'publications.html',
                   'cv.html': 'cv.html',
