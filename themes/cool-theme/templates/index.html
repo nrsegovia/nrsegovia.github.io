@@ -19,7 +19,7 @@
   <div id="latest-news" class="latest-news">
     <h2>Latest News</h2>
     <ul>
-      {% for article in articles if article.category == 'news' %}
+      {% for article in articles %}
         <li>{{ article.title }}</li>
         {% if loop.index <= 5 %}
           <li>
