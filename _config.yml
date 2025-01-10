@@ -22,7 +22,7 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "profile.jpg"
-  name             : "Nicolás Rodríguez-Segovia"
+  name             : # "Nicolás Rodríguez-Segovia"
   pronouns         : # example: "she/her"  
   bio              : "Stellar Astrophysics | Variable Stars | Binary Stars"
   location         : "Australia"
