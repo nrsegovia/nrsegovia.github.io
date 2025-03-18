@@ -18,7 +18,7 @@ Prof. Márcio Catelan’s group and I have focused on the analysis of Variable S
 
 While we have explored several different topics using these data, we have focused on a single DDF so far. This, combined with the great amount of images, means that the dataset still holds great potential for future work.
 
-*Related publications: [Baeza-Villagra et al. 2025](/), [Graham et al. 2023](https://doi.org/10.1093/mnras/stac3363)*
+*Related publications: [Baeza-Villagra et al. 2025](https://doi.org/10.1051/0004-6361/202453129), [Graham et al. 2023](https://doi.org/10.1093/mnras/stac3363)*
 
 ## Period Change Rates in LMC Cepheids
 
