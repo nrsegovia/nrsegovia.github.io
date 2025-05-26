@@ -1,0 +1,531 @@
+COMPAS v03.18.00
+Compact Object Mergers: Population Astrophysics and Statistics
+by Team COMPAS (http://compas.science/index.html)
+A binary star simulator
+
+Go to https://compas.readthedocs.io/en/latest/index.html for the online documentation
+Check https://compas.readthedocs.io/en/latest/pages/whats-new.html to see what's new in the latest release
+
+Options:
+--LBV-mass-loss-prescription
+  LBV Mass loss prescription (Options: ['BELCZYNSKI','HURLEY','HURLEY_ADD','ZERO'], default = 'HURLEY_ADD')
+--OB-mass-loss-prescription
+  OB mass loss prescription (Options: ['KRTICKA2018','BJORKLUND2022','VINK2021','VINK2001','ZERO'], default = 'VINK2021')
+--PISN-lower-limit
+  Minimum core mass for PISN, in Msol (default = 60.000000)
+--PISN-upper-limit
+  Maximum core mass for PISN, in Msol (default = 135.000000)
+--PPI-CO-Core-Shift-Hendriks
+  Shift in CO core mass for PPI (in Msol) for the Hendriks+23 PPI prescription (default = 0.000000)
+--PPI-lower-limit
+  Minimum core mass for PPI, in Msol (default = 35.000000)
+--PPI-upper-limit
+  Maximum core mass for PPI, in Msol (default = 60.000000)
+--RSG-mass-loss-prescription
+  RSG mass loss prescription (Options: ['NJ90','KEE2021','YANG2023','DECIN2023','BEASOR2020','VINKSABHAHIT2023','ZERO'], default = 'DECIN2023')
+--VMS-mass-loss-prescription
+  Very massive star mass loss prescription (Options: ['SABHAHIT2023','BESTENLEHNER2020','VINK2011','ZERO'], default = 'SABHAHIT2023')
+--WR-mass-loss-prescription
+  WR mass loss prescription (Options: ['SHENAR2019','SANDERVINK2023','BELCZYNSKI2010','ZERO'], default = 'SANDERVINK2023')
+--YAML-template
+  User-supplied YAML template filename (default = )
+--add-options-to-sysparms
+  Add program options columns to BSE/SSE SysParms file (Options: ['NEVER','GRID','ALWAYS'], default = 'GRID')
+--allow-non-stripped-ECSN
+  Allow ECSN to occur in unstripped progenitors (default = FALSE)
+--allow-rlof-at-birth
+  Allow binaries that have one or both stars in RLOF at birth to evolve (default = TRUE)
+--allow-touching-at-birth
+  Allow binaries that are touching at birth to evolve (default = FALSE)
+--angular-momentum-conservation-during-circularisation
+  Conserve angular momentum when binary is circularised when entering a Mass Transfer episode (default = FALSE)
+--black-hole-kicks-mode
+  Black hole kicks prescription (Options: ['FALLBACK','ZERO','REDUCED','FULL'], default = 'FALLBACK')
+--case-BB-stability-prescription
+  Case BB/BC mass transfer stability prescription (Options: ['ALWAYS_UNSTABLE','TREAT_AS_OTHER_MT','ALWAYS_STABLE_ONTO_NSBH','ALWAYS_STABLE'], default = 'ALWAYS_STABLE')
+--check-photon-tiring-limit
+  Check the photon tiring limit hasn't been exceeded by wind mass loss (default = FALSE)
+--chemically-homogeneous-evolution-mode
+  Chemically Homogeneous Evolution mode (Options: ['PESSIMISTIC','OPTIMISTIC','NONE'], default = 'PESSIMISTIC')
+--circularise-binary-during-mass-transfer
+  Circularise binary when it enters a Mass Transfer episode (default = TRUE)
+--common-envelope-allow-immediate-RLOF-post-CE-survive
+  Allow immediate post CE RLOF to survive common envelope evolution (default = FALSE)
+--common-envelope-allow-main-sequence-survive
+  Allow main sequence stars to survive common envelope evolution (default = TRUE)
+--common-envelope-allow-radiative-envelope-survive
+  Allow radiative envelope stars to survive common envelope evolution (default = FALSE)
+--common-envelope-alpha
+  Common Envelope efficiency alpha (default = 1.000000)
+--common-envelope-alpha-thermal
+  Defined such that lambda = alpha_th * lambda_b + (1.0 - alpha_th) * lambda_g (default = 1.000000)
+--common-envelope-formalism
+  Common envelope formalism (Options: ['TWO_STAGE','ENERGY'], default = 'ENERGY')
+--common-envelope-lambda
+  Common Envelope lambda (default = 0.100000)
+--common-envelope-lambda-multiplier
+  Multiply lambda by some constant (default = 1.000000)
+--common-envelope-lambda-nanjing-enhanced
+  Use Nanjing lambda's with enhanced extrapolation in stellar radius (default = FALSE)
+--common-envelope-lambda-nanjing-interpolate-in-mass
+  Use Nanjing lambda's with mass interpolation (only used when using enhanced Nanjing lambda's) (default = FALSE)
+--common-envelope-lambda-nanjing-interpolate-in-metallicity
+  Use Nanjing lambda's with metallicity interpolation (only used when using enhanced Nanjing lambda's) (default = FALSE)
+--common-envelope-lambda-nanjing-use-rejuvenated-mass
+  Use rejuvenated mass to calculate Nanjing lambda's (default = FALSE)
+--common-envelope-lambda-prescription
+  CE lambda prescription (Options: ['LAMBDA_DEWI','LAMBDA_KRUCKOW','LAMBDA_NANJING','LAMBDA_LOVERIDGE','LAMBDA_FIXED'], default = 'LAMBDA_NANJING')
+--common-envelope-mass-accretion-constant
+  Value of mass accreted by NS/BH, in Msol, during common envelope evolution, assuming all NS/BH accrete same amount of mass (common-envelope-mass-accretion-prescription CONSTANT). Ignored otherwise (default = 0.000000)
+--common-envelope-mass-accretion-max
+  Maximum amount of mass accreted by NS/BHs, in Msol, during common envelope evolution in Msol (default = 0.100000)
+--common-envelope-mass-accretion-min
+  Minimum amount of mass accreted by NS/BHs, in Msol, during common envelope evolution in Msol (default = 0.040000)
+--common-envelope-mass-accretion-prescription
+  Assumption about whether NS/BHs can accrete mass during common envelope evolution (Options: ['CHEVALIER','MACLEOD','UNIFORM','CONSTANT','ZERO'], default = 'ZERO')
+--common-envelope-recombination-energy-density
+  Recombination energy density, in erg/g (default = 15000000000000.000000)
+--common-envelope-slope-kruckow
+  Common Envelope slope for Kruckow lambda (default = -0.833333)
+--convective-envelope-mass-threshold
+  Fractional threshold of envelope mass that above which the envelopes of giants are labeled convective. Only used for --envelope-state-prescription = CONVECTIVE_MASS_THRESHOLD, ignored otherwise. (default = 0.100000)
+--convective-envelope-temperature-threshold
+  Temperature [K] threshold, below which the envelopes of giants are convective. Only used for --envelope-state-prescription = FIXED_TEMPERATURE, ignored otherwise. (default = 5370.000000)
+--cool-wind-mass-loss-multiplier
+  Multiplicative constant for wind mass loss of cool stars (default = 1.000000)
+--create-YAML-file
+  Create YAML file (default = )
+--critical-mass-ratio-HG-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a HG star to a degenerate accretor (default = 0.210000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-HG-non-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a HG star to a non-degenerate accretor (default = 0.250000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-MS-high-mass-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a MS star to a degenerate accretor (default = 0.000000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-MS-high-mass-non-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a MS star to a non-degenerate accretor (default = 0.625000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-MS-low-mass-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a MS star to a degenerate accretor (default = 1.000000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-MS-low-mass-non-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a MS star to a non-degenerate accretor (default = 1.440000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-giant-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a giant star to a degenerate accretor (default = 0.870000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-giant-non-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a giant star to a non-degenerate accretor (default = -1.000000, which triggers a call to a function of the core mass ratio [Claeys+2014]).
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-helium-HG-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a helium HG star to a degenerate accretor (default = 0.210000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-helium-HG-non-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a helium HG star to a non-degenerate accretor (default = 0.250000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-helium-MS-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a helium MS star to a degenerate accretor (default = 0.000000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-helium-MS-non-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a helium MS star to a non-degenerate accretor (default = 0.000000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-helium-giant-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a helium giant star to a degenerate accretor (default = 0.870000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-helium-giant-non-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a helium giant star to a non-degenerate accretor (default = 1.280000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-prescription
+  Prescription for which critical mass ratio threshold to use, if any (Options: ['HURLEY_HJELLMING_WEBBINK','GE','GE_IC','CLAEYS','NONE'], default = 'NONE')
+--critical-mass-ratio-white-dwarf-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a white dwarf to a degenerate accretor (default = 1.600000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--critical-mass-ratio-white-dwarf-non-degenerate-accretor
+  Critical mass ratio (mA/mD) for MT from a white dwarf to a non-degenerate accretor (default = 0.000000)
+  0 is always stable, <0 is disabled.
+  Only used for --critical-mass-ratio-prescription CLAEYS, ignored otherwise.
+--debug-classes
+  Debug classes enabled (default = {})
+--debug-level
+  Determines which print statements are displayed for debugging (default = 0)
+--debug-to-file
+  Write debug statements to file (default = FALSE)
+--detailed-output
+  Print detailed output to file (default = FALSE)
+--eccentricity [ -e ]
+  Eccentricity, e (default = 0.000000)
+--eccentricity-distribution
+  Initial eccentricity distribution (Options: ['SANA2012','DUQUENNOYMAYOR1991','GELLER+2013','THERMAL','FLAT','ZERO'], default = 'ZERO')
+--eccentricity-max
+  Maximum eccentricity to generate (default = 1.000000)
+--eccentricity-min
+  Minimum eccentricity to generate (default = 0.000000)
+--eddington-accretion-factor
+  Multiplication factor for eddington accretion for NS & BH, i.e. >1 is super-eddington and 0. is no accretion (default = 1.000000)
+--emit-gravitational-radiation
+  Emit gravitational radiation at each timestep of binary evolution (default = FALSE)
+--enable-rotationally-enhanced-mass-loss
+  Enable rotationally enhanced mass loss for rapidly rotating stars following Langer 1998 (default = FALSE)
+--enable-warnings
+  Display warning messages to stdout (default = FALSE)
+--enhance-CHE-lifetimes-luminosities
+  Whether to enhance the lifetimes and luminosities of chemically homogeneously evolving (CHE) stars relative to SSE main sequence lifetimes/luminosities (default = FALSE)
+--envelope-state-prescription
+  Prescription for whether the envelope is radiative or convective (Options: ['CONVECTIVE_MASS_FRACTION','FIXED_TEMPERATURE','HURLEY','LEGACY'], default = 'LEGACY')
+--errors-to-file
+  Write error messages to file (default = FALSE)
+--evolve-double-white-dwarfs
+  Evolve Double White Dwarfs (default = FALSE)
+--evolve-main-sequence-mergers
+  Continue evolving main sequence merger products (default = FALSE)
+--evolve-pulsars
+  Evolve pulsars (default = FALSE)
+--evolve-unbound-systems
+  Continue evolving stars even if the binary is disrupted (default = TRUE)
+--expel-convective-envelope-above-luminosity-threshold
+  Expel convective envelope if luminosity to mass ratio exceeds threshold given by m_LuminosityToMassThreshold  (default = FALSE)
+--fix-dimensionless-kick-magnitude
+  Fix dimensionless kick magnitude uk to this value (default = -1.000000, -ve values false, +ve values true)
+--fp-error-mode
+  Specifies the floating-point error handling mode (Options: ['DEBUG','ON','OFF'], default = 'OFF')
+--fryer-22-fmix
+  parameter describing the mixing growth time when using the 'FRYER2022' remnant mass distribution (default = 0.500000)
+--fryer-22-mcrit
+  Critical CO core mass for black hole formation when using the 'FRYER2022' remnant mass distribution (default = 5.750000)
+--fryer-supernova-engine
+  If using Fryer et al 2012 fallback prescription (Options: ['DELAYED','RAPID'], default = 'DELAYED')
+--grid
+  Grid filename (default = )
+--grid-lines-to-process
+  Specifies how many grid lines should be processed (from the start line - see grid-start-line) (default = Process to EOF)
+--grid-start-line
+  Specifies which line of the grid file is processed first (0-based) (default = 0)
+--hdf5-buffer-size
+  HDF5 file dataset IO buffer size (number of chunks, default = 1)
+--hdf5-chunk-size
+  HDF5 file dataset chunk size (number of dataset entries, default = 100000)
+--help [ -h ]
+  Print this help message
+--hmxr-binaries
+  Store HMXRB candidates in BSE_RLOF output file (default = FALSE)
+--include-WD-binaries-as-DCO
+  Store WD binaries in BSE_Double_Compact_Objects output file (default = FALSE)
+--initial-mass
+  Initial mass (in Msol) for the star (SSE) (default = 5.000000)
+--initial-mass-1
+  Initial mass (in Msol) for the primary star (BSE) (default = 5.000000)
+--initial-mass-2
+  Initial mass (in Msol) for the secondary star (BSE) (default = 5.000000)
+--initial-mass-function [ -i ]
+  Initial mass function (Options: ['KROUPA','UNIFORM','POWERLAW','SALPETER'], default = 'KROUPA')
+--initial-mass-max
+  Maximum mass (in Msol) to generate using given IMF (default = 150.000000)
+--initial-mass-min
+  Minimum mass (in Msol) to generate using given IMF (default = 5.000000)
+--initial-mass-power
+  Single power law power to generate primary mass using POWERLAW IMF (default = 0.000000)
+--kick-direction-distribution
+  Natal kick direction distribution (Options: ['POLES','WEDGE','POWERLAW','PERPENDICULAR','INPLANE','ISOTROPIC'], default = 'ISOTROPIC')
+--kick-direction-power
+  Power for power law kick direction distribution (default = 0.000000 = isotropic, +ve = polar, -ve = in plane)
+--kick-magnitude
+  The magnitude of the kick velocity, in km/s, that the star receives during the supernova (default = 0.000000)
+--kick-magnitude-1
+  The magnitude of the kick velocity, in km/s, that the primary star receives during the supernova (default = 0.000000)
+--kick-magnitude-2
+  The magnitude of the kick velocity, in km/s, that the secondary star receives during the supernova (default = 0.000000)
+--kick-magnitude-distribution
+  Natal kick magnitude distribution (Options: ['MULLERMANDEL','MULLER2016MAXWELLIAN','MULLER2016','BRAYELDRIDGE','MAXWELLIAN','FLAT','FIXED','ZERO'], default = 'MULLERMANDEL')
+--kick-magnitude-max
+  Maximum drawn kick magnitude in km/s. Ignored if < 0. Must be > 0 if using kick-magnitude-distribution=FLAT (default = -1.000000)
+--kick-magnitude-random
+  Number used to choose the kick velocity magnitude for the star during the a supernova (default = uniform random number [0.0, 1.0))
+--kick-magnitude-random-1
+  Number used to choose the kick velocity magnitude for the primary star during the a supernova (default = uniform random number [0.0, 1.0))
+--kick-magnitude-random-2
+  Number used to choose the kick velocity magnitude for the secondary during the a supernova (default = uniform random number [0.0, 1.0))
+--kick-magnitude-sigma-CCSN-BH
+  Sigma for chosen kick magnitude distribution, in km/s, for black holes (default = 265.000000)
+--kick-magnitude-sigma-CCSN-NS
+  Sigma for chosen kick magnitude distribution, in km/s, for neutron stars (default = 265.000000)
+--kick-magnitude-sigma-ECSN
+  Sigma for chosen kick magnitude distribution, in km/s, for ECSN (default = 30.000000)
+--kick-magnitude-sigma-USSN
+  Sigma for chosen kick magnitude distribution, in km/s, for USSN (default = 30.000000)
+--kick-mean-anomaly-1
+  Mean anomaly, in rad, for the primary star at instantaneous time of the supernova (default = uniform random number [0.0, 2pi))
+--kick-mean-anomaly-2
+  Mean anomaly, in rad, for the secondary star at instantaneous time of the supernova (default = uniform random number [0.0, 2pi))
+--kick-phi-1
+  Planar angle, in rad, of the supernova vector, for the primary star (default = drawn from kick direction distribution)
+--kick-phi-2
+  Planar angle, in rad, of the supernova vector, for the secondary star (default = drawn from kick direction distribution)
+--kick-scaling-factor
+  Arbitrary factor used to scale kicks (default = 1.000000)
+--kick-theta-1
+  Polar angle, in rad, of the supernova vector, for the primary star (default = drawn from kick direction distribution)
+--kick-theta-2
+  Polar angle, in rad, of the supernova vector, for the secondary star (default = drawn from kick direction distribution)
+--log-classes
+  Logging classes enabled (default = {})
+--log-level
+  Determines which print statements are included in the logfile (default = 0)
+--logfile-common-envelopes
+  Filename for BSE Common Envelopes logfile (default = BSE_Common_Envelopes)
+--logfile-common-envelopes-record-types
+  Enabled record types for BSE Common Envelopes logfile (default = -1)
+--logfile-definitions
+  Filename for logfile record definitions (default = )
+--logfile-detailed-output
+  Filename for BSE Detailed Output logfile (default = BSE_Detailed_Output)
+--logfile-detailed-output-record-types
+  Enabled record types for BSE Detailed Output logfile (default = -1)
+--logfile-double-compact-objects
+  Filename for Double Compact Objects logfile (default = BSE_Double_Compact_Objects)
+--logfile-double-compact-objects-record-types
+  Enabled record types for Double Compact Objects logfile (default = -1)
+--logfile-name-prefix
+  Prefix for logfile names (default = )
+--logfile-pulsar-evolution
+  Filename for Pulsar Evolution logfile (default = BSE_Pulsar_Evolution)
+--logfile-pulsar-evolution-record-types
+  Enabled record types for Pulsar Evolution logfile (default = -1)
+--logfile-rlof-parameters
+  Filename for BSE RLOF Parameters logfile ( default = BSE_RLOF)
+--logfile-rlof-parameters-record-types
+  Enabled record types for BSE RLOF Parameters logfile ( default = -1)
+--logfile-supernovae
+  Filename for Supernovae logfile (default = BSE_Supernovae)
+--logfile-supernovae-record-types
+  Enabled record types for Supernovae logfile (default = -1)
+--logfile-switch-log
+  Filename for Switch Log logfile (default = BSE_Switch_Log)
+--logfile-system-parameters
+  Filename for System Parameters logfile (default = BSE_System_Parameters)
+--logfile-system-parameters-record-types
+  Enabled record types for System Parameters logfile (default = -1)
+--logfile-type
+  File type for logfiles (Options: ['TXT','TSV','CSV','HDF5'], default = 'HDF5')
+--luminosity-to-mass-threshold
+  Threshold value of log_10(L/M) above which the convective envelope is expelled in a pulsation (default = 4.200000)
+--luminous-blue-variable-multiplier
+  Multiplicitive constant for LBV mass loss (default = 1.500000, use 10 for Mennekens & Vanbeveren 2014)
+--main-sequence-core-mass-prescription
+  Main Sequence core mass prescription (Options: ['BRCEK','MANDEL','ZERO'], default = 'MANDEL')
+--mass-change-fraction
+  Approximate goal for fractional mass change per timestep for SSE and BSE (default = 0.001000)
+--mass-loss-prescription
+  Mass loss prescription (Options: ['MERRITT2024','BELCZYNSKI2010','HURLEY','ZERO'], default = 'MERRITT2024')
+--mass-ratio [ -q ]
+  Mass ratio m2/m1 used to determine secondary mass if not specified (default = 1.000000)
+--mass-ratio-distribution
+  Initial mass ratio distribution for q=m2/m1 (Options: ['SANA2012','DUQUENNOYMAYOR1991','FLAT'], default = 'FLAT')
+--mass-ratio-max
+  Maximum mass ratio m2/m1 to generate (default = 1.000000)
+--mass-ratio-min
+  Minimum mass ratio m2/m1 to generate (default = 0.010000)
+--mass-transfer-accretion-efficiency-prescription
+  Mass Transfer Accretion Efficiency prescription (Options: ['FIXED','THERMAL'], default = 'THERMAL')
+--mass-transfer-angular-momentum-loss-prescription
+  Mass Transfer Angular Momentum Loss prescription (Options: ['ARBITRARY','MACLEOD_LINEAR','CIRCUMBINARY','ISOTROPIC','JEANS'], default = 'ISOTROPIC')
+--mass-transfer-fa
+  Mass Transfer fraction accreted in FIXED prescription (default = 0.500000)
+--mass-transfer-jloss
+  Fraction of specific angular momentum which non-accreted matter removes from the system (default = 1.000000)
+--mass-transfer-jloss-macleod-linear-fraction-degen
+  Interpolation fraction for jloss prescription for degenerate accretors, requires --mass-transfer-angular-momentum-loss-prescription=MACLEOD_LINEAR. 0 is gamma_acc, 1 is gamma_L2 (default = 0.500000)
+--mass-transfer-jloss-macleod-linear-fraction-non-degen
+  Interpolation fraction for jloss prescription for non-degenerate accretors, requires --mass-transfer-angular-momentum-loss-prescription=MACLEOD_LINEAR. 0 is gamma_acc, 1 is gamma_L2 (default = 0.500000)
+--mass-transfer-rejuvenation-prescription
+  Mass Transfer Rejuvenation prescription (Options: ['STARTRACK','HURLEY'], default = 'STARTRACK')
+--mass-transfer-thermal-limit-C
+  Mass Transfer Thermal rate factor of the accretor (default = 10.000000)
+--mass-transfer-thermal-limit-accretor-multiplier
+  Mass Transfer Thermal Accretion limit (Options: ['ROCHELOBE','CFACTOR'], default = 'CFACTOR')
+--maximum-evolution-time
+  Maximum time to evolve binaries, in Myr (default = 13700.000000)
+--maximum-mass-donor-nandez-ivanova
+  Maximum donor mass, in Msol, allowed for the revised common envelope formalism in Msol (default = 2.000000)
+--maximum-neutron-star-mass
+  Maximum mass of a neutron star, in Msol (default = 2.500000)
+--maximum-number-timestep-iterations
+  Maximum number of timesteps to evolve binary before giving up (default = 99999)
+--mcbur1
+  Minimum core mass at BAGB, in Msol, to avoid fully degenerate CO core (default = 1.600000)
+--metallicity [ -z ]
+  Metallicity to use (default = 0.014200)
+--metallicity-distribution
+  Metallicity distribution (Options: ['LOGUNIFORM','ZSOLAR'], default = 'ZSOLAR')
+--metallicity-max
+  Maximum metallicity to generate (default = 0.030000)
+--metallicity-min
+  Minimum metallicity to generate (default = 0.000100)
+--minimum-secondary-mass
+  Minimum mass of secondary to generate, in Msol (default = 0.100000)
+--mode
+  Evolution mode (Options: ['BSE','SSE'], default = 'BSE')
+--muller-mandel-kick-multiplier-BH
+  Scaling prefactor for BH kicks when using the 'MULLERMANDEL' kick magnitude distribution (default = 200.000000)
+--muller-mandel-kick-multiplier-NS
+  Scaling prefactor for NS kicks when using the 'MULLERMANDEL' kick magnitude distribution (default = 520.000000)
+--muller-mandel-sigma-kick
+  Kick scatter when using the 'MULLERMANDEL' kick magnitude distribution (default = 0.300000)
+--natal-kick-for-PPISN
+  Give non-zero natal kicks to PPISN remnants (default = FALSE)
+--neutrino-mass-loss-BH-formation
+  Assumption about neutrino mass loss during BH formation (Options: ['FIXED_MASS','FIXED_FRACTION'], default = 'FIXED_MASS')
+--neutrino-mass-loss-BH-formation-value
+  Amount of BH mass lost due to neutrinos (either fraction or fixed value, depending on --neutrino-mass-loss-BH-formation) (default = 0.100000)
+--neutron-star-accretion-in-ce
+  Neutron star accretion in common envelope to use (Options: ['DISK','SURFACE','ZERO'], default = 'ZERO')
+--neutron-star-equation-of-state
+  Neutron star equation of state to use (Options: ['ARP3','SSE'], default = 'SSE')
+--notes
+  User-specified annotations (default = {})
+--notes-hdrs
+  User-specified annotation header strings (default = {})
+--number-of-systems [ -n ]
+  Specify the number of systems to simulate (SSE) (default = 10)
+--orbital-period
+  Initial orbital period, in days (default = 0.100000)
+--orbital-period-distribution
+  Initial orbital period distribution (Options: ['FLATINLOG'], default = 'FLATINLOG')
+--orbital-period-max
+  Maximum period, in days, to generate (default = 1000.000000)
+--orbital-period-min
+  Minimum period, in days, to generate (default = 1.100000)
+--output-container [ -c ]
+  Container (directory) name for output files (default = COMPAS_Output)
+--output-path [ -o ]
+  Directory for output (default = .)
+--overall-wind-mass-loss-multiplier
+  Multiplicitive constant for overall wind mass loss (default = 1.000000)
+--pair-instability-supernovae
+  Enable pair instability supernovae (PISN) (default = TRUE)
+--population-data-printing
+  Print details of population (default = FALSE)
+--print-bool-as-string
+  Print boolean properties as 'TRUE' or 'FALSE' (default = FALSE)
+--pulsar-birth-magnetic-field-distribution
+  Pulsar Birth Magnetic Field distribution (Options: ['LOGNORMAL','UNIFORM','FLATINLOG'], default = 'LOGNORMAL')
+--pulsar-birth-magnetic-field-distribution-max
+  Maximum pulsar birth magnetic field, in log10(Gauss) (default = 13.000000)
+--pulsar-birth-magnetic-field-distribution-mean
+  Mean of normal or lognormal distribution for birth magnetic field (log10 B/G) (default = 12.650000)
+--pulsar-birth-magnetic-field-distribution-min
+  Minimum pulsar birth magnetic field, in log10(Gauss) (default = 11.000000)
+--pulsar-birth-magnetic-field-distribution-sigma
+  Standard deviation of normal or lognormal distribution for birth magnetic field (log10 B/G) (default = 0.550000)
+--pulsar-birth-spin-period-distribution
+  Pulsar Birth Spin Period distribution (Options: ['NORMAL','UNIFORM'], default = 'NORMAL')
+--pulsar-birth-spin-period-distribution-max
+  Maximum pulsar birth spin period, in ms (default = 100.000000)
+--pulsar-birth-spin-period-distribution-mean
+  Mean of normal or lognormal distribution for birth spin period (ms) (default = 100.000000)
+--pulsar-birth-spin-period-distribution-min
+  Minimum pulsar birth spin period, in ms (default = 10.000000)
+--pulsar-birth-spin-period-distribution-sigma
+  Standard deviation of normal or lognormal distribution for birth spin period (ms) (default = 25.000000)
+--pulsar-magnetic-field-decay-massscale
+  Mass scale on which magnetic field decays during accretion, in Msol (default = 0.025000)
+--pulsar-magnetic-field-decay-timescale
+  Timescale on which magnetic field decays, in Myr (default = 1000.000000)
+--pulsar-minimum-magnetic-field
+  Minimum pulsar magnetic field, in log10(Gauss) (default = 8.000000)
+--pulsational-pair-instability
+  Enable mass loss due to pulsational-pair-instability (PPI) (default = TRUE)
+--pulsational-pair-instability-prescription
+  Pulsational Pair Instability prescription (Options: ['COMPAS','HENDRIKS','FARMER','MARCHANT','STARTRACK','WOOSLEY'], default = 'MARCHANT')
+--quiet
+  Suppress printing (default = FALSE)
+--radial-change-fraction
+  Approximate goal for fractional radial change per timestep for SSE and BSE (default = 0.100000)
+--random-seed
+  Random seed to use (default = 0)
+--remnant-mass-prescription
+  Choose remnant mass prescription (Options: ['MALTSEV2024','SCHNEIDER2020ALT','SCHNEIDER2020','MULLERMANDEL','MULLER2016','FRYER2022','FRYER2012','BELCZYNSKI2002','HURLEY2000'], default = 'MULLERMANDEL')
+--response-to-spin-up
+  Response to spin-up prescription (Options: ['NO_LIMIT','KEPLERIAN_LIMIT','TRANSFER_TO_ORBIT'], default = 'TRANSFER_TO_ORBIT')
+--retain-core-mass-during-caseA-mass-transfer
+  Retain approximate core mass of a case A donor as a minimum core at end of MS or HeMS (default = TRUE)
+--revised-energy-formalism-nandez-ivanova
+  Enable revised energy formalism (default = FALSE)
+--rlof-printing
+  Enable output parameters before/after RLOF (default = TRUE)
+--rocket-kick-magnitude-1
+  The magnitude of the rocket kick velocity, in km/s, that primary neutron star receives following the supernova (default = 0.000000)
+--rocket-kick-magnitude-2
+  The magnitude of the rocket kick velocity, in km/s, that primary neutron star receives following the supernova (default = 0.000000)
+--rocket-kick-phi-1
+  The in-plane angle [0, 2pi) of the rocket kick velocity that primary neutron star receives following the supernova (default = 0.000000)
+--rocket-kick-phi-2
+  The in-plane angle [0, 2pi) of the rocket kick velocity that secondary neutron star receives following the supernova (default 0.000000)
+--rocket-kick-theta-1
+  The polar angle [0, pi] of the rocket kick velocity that primary neutron star receives following the supernova. 0 is aligned with orbital AM (default = 0.000000)
+--rocket-kick-theta-2
+  The polar angle [0, pi] of the rocket kick velocity that secondary neutron star receives following the supernova. 0 is aligned with orbital AM (default = 0.000000)
+--rotational-frequency
+  Initial rotational frequency for the star for SSE (Hz) (default = 0.000000)
+--rotational-frequency-1
+  Initial rotational frequency for the primary star for BSE (Hz) (default = 0.000000)
+--rotational-frequency-2
+  Initial rotational frequency for the secondary star for BSE (Hz) (default = 0.000000)
+--rotational-velocity-distribution
+  Initial rotational velocity distribution (Options: ['VLTFLAMES','HURLEY','ZERO'], default = 'ZERO')
+--scale-CHE-mass-loss-with-surface-helium-abundance
+  Whether to transition mass loss rates for chemically homogeneously evolving (CHE) stars between OB mass loss rates and Wolf-Rayet (WR) mass loss rates as a function of the surface helium abundance (Ys) as described by Yoon et al. 2006 (default = FALSE)
+--scale-terminal-wind-velocity-with-metallicity-power
+  Power (x) with which to scale the terminal wind velocity (v_inf) with metallicity (Z) in the Vink+2001 prescription (v_inf ~ Z^x)  (default = 0.000000)
+--semi-major-axis [ -a ]
+  Initial semi-major axis, in AU (default = 0.100000)
+--semi-major-axis-distribution
+  Initial semi-major axis distribution (Options: ['SANA2012','DUQUENNOYMAYOR1991','FLATINLOG'], default = 'FLATINLOG')
+--semi-major-axis-max
+  Maximum semi-major axis, in AU, to generate (default = 1000.000000)
+--semi-major-axis-min
+  Minimum semi-major axis, in AU, to generate (default = 0.010000)
+--stellar-zeta-prescription
+  Prescription for stellar zeta (Options: ['ARBITRARY','HURLEY','SOBERMAN'], default = 'SOBERMAN')
+--store-input-files
+  Store input files in output container (default = TRUE)
+--switch-log
+  Print switch log to file (default = FALSE)
+--tides-prescription
+  Tides Prescription (Options: ['KAPIL2024','PERFECT','NONE'], default = 'NONE')
+--timestep-multiplier
+  Timestep multiplier for SSE and BSE on top of other choices, for use in debugging (default = 1.000000)
+--timestep-multipliers
+  Phase-dependent timestep multipliers for SSE and BSE on top of other choices, for use in debugging (default = {})
+--timesteps-filename
+  Filename for file to provide timesteps to be used for evolution (SSE and BSE) (default = '')
+--use-mass-loss
+  Enable mass loss (default = TRUE)
+--use-mass-transfer
+  Enable mass transfer (default = TRUE)
+--version [ -v ]
+  Print COMPAS version string
+--wolf-rayet-multiplier
+  Multiplicitive constant for WR winds (default = 1.000000)
+--zeta-adiabatic-arbitrary
+  Value of mass-radius exponent zeta adiabatic (default = 10000.000000)
+--zeta-main-sequence
+  Value of mass-radius exponent zeta on the main sequence (default = 2.000000)
+--zeta-radiative-envelope-giant
+  Value of mass-radius exponent zeta for radiative envelope giants (default = 6.500000)
