@@ -4,11 +4,14 @@ title: "Research Projects"
 author_profile: true
 ---
 
+## Classification of Variable Stars using Deep Metric Learning
+Work in progress.
+
 ## Formation and Evolution of subdwarf B stars
 
 Subdwarf B stars (sdBs) are a well-known class of hot, low-mass stars thought to be formed through interactions in stellar binary systems. As such, their different formation channels and characteristics of the predicted populations depend on the initial set of assumptions that describe relevant physical processes (common envelope episodes, angular momentum loss during mass transfer, etc). My research focuses on trying to find the best possible configuration in order to better predict the observed sdB sample by using the rapid population synthesis code [COMPAS](https://compas.science/). I have noticed that yet another key component is usually poorly described and constrained: the hydrogen-rich remnant in the outer layers of sdBs. While not playing a big role in the orbital evolution, it does significantly affect the atmospheric properties and, therefore, observables such as effective temperature and surface gravity. To bridge the gap between the simplified prescriptions used in BPS codes, I use detailed models built by using [MESA](https://docs.mesastar.org/en/latest/index.html).
 
-*Related publications: [Rodriguez-Segovia, Ruiter & Seitenzahl 2024](https://doi.org/10.1017/pasa.2024.135)*
+*Related publications: [Rodriguez-Segovia, Ruiter & Seitenzahl 2025](https://doi.org/10.1017/pasa.2024.135), [Rodriguez-Segovia & Ruiter 2025](https://academic.oup.com/mnras/article/539/4/3273/8123399) *
 
 ## Deep Drilling with DECam
 
